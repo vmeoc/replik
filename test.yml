@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nico
+  labels:
+    app: replik
+spec:
+
+  volumes:
+  - name: shared-data
+    emptyDir: {}
+
+  containers:
+
+  - name: theiade
+    image: theiaide/theia:latest
+    volumeMounts:
+    - name: shared-data
+      mountPath: /home/project
+    ports:
+    - containerPort: 3000
+
+  - name: tito
+    image: vmeoc/tito-fe:V1.9.4
+    volumeMounts:
+    - name: shared-data
+      mountPath: /var/www/
+    ports:
+    - containerPort: 80
+
